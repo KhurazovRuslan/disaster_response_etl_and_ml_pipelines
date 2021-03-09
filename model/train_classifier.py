@@ -1,4 +1,16 @@
+# QUICK NOTE!
+# This script was tested in Udacity workspace IDE, however,
+# udacity IDE doesn't seem to have xgboost library installed, so
+# I used scikit learn's Decision tree classifier instead (only in IDE)
+# if you run it udacity workspace IDE, uncomment lines reffering to Decision tree and comment 
+# lines reffering xgboost
+
+# THE REST OF THE CODE STAYS THE SAME!
+
+
+
 # imports for script to run
+import sys
 import numpy as np
 import pandas as pd
 import sqlite3
@@ -9,24 +21,17 @@ import nltk
 nltk.download(['punkt','wordnet','stopwords','averaged_perceptron_tagger','omw'])
 from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
-from nltk.stem.porter import PorterStemmer
 from nltk.corpus import wordnet
 
 from sklearn.feature_extraction.stop_words import ENGLISH_STOP_WORDS
-from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.decomposition import TruncatedSVD
-from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.pipeline import Pipeline, FeatureUnion
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
+from sklearn.pipeline import Pipeline
 from xgboost import XGBClassifier
+#from sklearn.tree import DecisionTreeClassifier
 from sklearn.multioutput import MultiOutputClassifier
-from sklearn.metrics import recall_score, f1_score, brier_score_loss, roc_auc_score
-from scipy.stats import zscore
+from sklearn.metrics import recall_score, f1_score, brier_score_loss, roc_auc_score, classification_report
+
 
 import pickle
 
@@ -263,11 +268,10 @@ def load_data(database_file_path):
     Loads the data from SQLite database
     database_file_path - string, path to sqlite database (.db file)
     Returns: X - dataframe with features to train and test on,
-             y - dataframe with multi-class(36) binary labels(0,1),
-             labeled_classes - classes' names
+             y - dataframe with multi-class(35) binary labels(0,1)
     """
     engine = create_engine(f'sqlite:///{database_file_path}')
-    df = pd.read_sql(query='SELECT * FROM disaster_messages', con=engine)
+    df = pd.read_sql('SELECT * FROM disaster_messages', engine)
     df.drop('child_alone', axis=1, inplace=True)
     X = df['message']
     y = df.iloc[:,4:]
@@ -284,16 +288,19 @@ def build_model():
 
     # variable for a pipeline
     pipeline = Pipeline(steps=[
-      ('features',TfidfVectorizer(tokenizer=process_text, ngram_range=(1,2), max_df=0.95, min_df=2)),
-      ('clf',MultiOutputClassifier(XGBClassifier(random_state=42)))])
+      ('features',TfidfVectorizer(tokenizer=process_text, ngram_range=(1,3), max_df=0.95, min_df=2)),
+      ('clf',MultiOutputClassifier(XGBClassifier(random_state=42, max_depth=6, n_estimators=1000, eta=0.1)))])
+      #('clf',MultiOutputClassifier(DecisionTreeClassifier(random_state=42)))])
+        
 
 
     # set of parameters to search for better result
     # just one parameter to save time. for full version refer to ML notebook
-    params = {'clf__estimator__n_estimators':[500,1000]}
+    params = {'features__ngram_range':[(1,2),(1,3)]}
+    
 
     # initialize model, 2-fold fitting to save time
-    model = GridSearchCV(estimator=pipeline, param_grid=params, verbose=5, scoring='f1_weighted', cv=2)
+    model = GridSearchCV(estimator=pipeline, param_grid=params, cv=2, scoring='recall_weighted', verbose=5)
 
 
     return model 
@@ -330,22 +337,21 @@ def evaluate_model(model,X_test,y_test):
     model - trained machine learning model to evaluate
     X_test - features for model testing
     y_test - labels for model testing
-    labeled_classes - names of classes while multi-class classification
     Prints out a classification report for each class and overall recall_score
     """
 
     # predictions
-    y_pred = model.predict(X_test)
-    y_proba = model.predict_proba(X_test)
+    y_pred = np.array(model.predict(X_test))
+    y_proba = np.array(model.predict_proba(X_test))
 
     # a for loop to print out classification report for each class
     for i,column in enumerate(list(y_test.columns)):
         print(f'Classification report for {column} column:')
-        print(classification_report(y_test[column],y_pred.iloc[:,i]))
+        print(classification_report(y_test[column],y_pred[:,i]))
         print(' ')
 
     print(f"Overall recall score is {recall_score(y_test,y_pred, average='weighted')}") 
-    print(f"Overall f1_score score is {recall_score(y_test,y_pred, average='weighted')}")
+    print(f"Overall f1_score score is {f1_score(y_test,y_pred, average='weighted')}")
     print(f"Brier score loss is {evaluate_proba(y_test,y_proba,'brier_score_loss')}")
     print(f"ROC AUC score is {evaluate_proba(y_test,y_proba,'roc_auc_score')}")
 
@@ -387,7 +393,7 @@ def main():
         print(' ')
 
         print('Saving the model...')
-        save_model(model_file_path)
+        save_model(model,model_file_path)
         print(' ')
 
         print(f'All done! Trained model is successfully stored in {model_file_path} file')
@@ -401,4 +407,4 @@ def main():
 
 
 if __name__=='__main__':
-    main()      
+    main()   
