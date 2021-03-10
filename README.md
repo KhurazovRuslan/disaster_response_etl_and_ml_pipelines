@@ -1,7 +1,7 @@
 <h1>Disaster response ETL and ML pipelines</h2>
-<li>
+
 The goal of the project is to build ETL and ML pipelines using the data provided by <a href='https://appen.com/'>Figure Eight (aquired by Appen)</a>. Created pipelines will lead to building a classifier and deploying a web app that will be able to identify users' disaster messages or events in need of attention.
-</li>
+
 <li>
  <h2>Files:</h2>
     <ul>  
