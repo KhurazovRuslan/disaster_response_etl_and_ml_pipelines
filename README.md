@@ -1,6 +1,6 @@
 <h1>Disaster response ETL and ML pipelines</h2>
 
-The goal of the project is to build ETL and ML pipelines using the data provided by <a href='https://appen.com/'>Figure Eight (aquired by Appen)</a>. Created pipelines will lead to building a classifier and deploying a web app that will be able to identify users' disaster messages or events in need of attention.
+The goal of the project is to build ETL and ML pipelines using the data provided by <a href='https://appen.com/'>Figure Eight (aquired by Appen)</a>, use those pipelines to create a classifier and deploy a web app that will be able to identify users' disaster messages or events in need of attention.
 
 
  <h2>Files:</h2>
@@ -50,8 +50,7 @@ The goal of the project is to build ETL and ML pipelines using the data provided
     <ul>- Run the following command in the app's directory to run your web app: python run.py</ul>
     <ul>- Go to http://0.0.0.0:3001/ (in my case it was https://view6914b2f4-3001.udacity-student-workspaces.com/)</ul>
 </ul>
-</li>
-<li>
+
   <h2>Thanks to:</h2>
   <ul>https://towardsdatascience.com/using-word2vec-to-analyze-news-headlines-and-predict-article-success-cdeda5f14751 and https://medium.com/@robert.salgado/multiclass-text-classification-from-start-to-finish-f616a8642538 for explaining basics of NLP for multiclass problems</ul>
   <ul>https://machinelearningmastery.com/tour-of-evaluation-metrics-for-imbalanced-classification/#:~:text=There%20are%20two%20groups%20of,%2Dspecificity%20and%20precision%2Drecall. for explaining different metrics for classification problems</ul>
