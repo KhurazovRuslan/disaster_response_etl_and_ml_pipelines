@@ -2,7 +2,7 @@
 
 The goal of the project is to build ETL and ML pipelines using the data provided by <a href='https://appen.com/'>Figure Eight (aquired by Appen)</a>. Created pipelines will lead to building a classifier and deploying a web app that will be able to identify users' disaster messages or events in need of attention.
 
-<li>
+
  <h2>Files:</h2>
     <ul>  
       <a href='https://github.com/KhurazovRuslan/disaster_response_etl_and_ml_pipelines/tree/main/app'>App folder</a>
@@ -25,8 +25,7 @@ The goal of the project is to build ETL and ML pipelines using the data provided
         <ul>- <a href='https://github.com/KhurazovRuslan/disaster_response_etl_and_ml_pipelines/blob/main/model/trained_classifier.pkl'>trained_classifier.pkl</a> is already trained and tuned classifier to deploy with web app</ul>
 </ul>  
     <ul><a href='https://github.com/KhurazovRuslan/disaster_response_etl_and_ml_pipelines/blob/main/README.md'>Readme</a> file</ul>      
-</li>  
-<li>
+
   <h2>Techologies used:</h2>
       <ul>- python 3.7.8</ul>
       <ul>- pandas 1.1.0</ul>
@@ -42,8 +41,7 @@ The goal of the project is to build ETL and ML pipelines using the data provided
       <ul>- json 2.0.9</ul>
       <ul>- plotly 4.9.0</ul>
       <ul>- flask 1.1.2</ul> 
-</li>
-<li>
+
   <h2>Instructions:</h2>
   <ul>
     Run the following commands in the project's root directory to set up your database and model.
@@ -58,4 +56,4 @@ The goal of the project is to build ETL and ML pipelines using the data provided
   <ul>https://towardsdatascience.com/using-word2vec-to-analyze-news-headlines-and-predict-article-success-cdeda5f14751 and https://medium.com/@robert.salgado/multiclass-text-classification-from-start-to-finish-f616a8642538 for explaining basics of NLP for multiclass problems</ul>
   <ul>https://machinelearningmastery.com/tour-of-evaluation-metrics-for-imbalanced-classification/#:~:text=There%20are%20two%20groups%20of,%2Dspecificity%20and%20precision%2Drecall. for explaining different metrics for classification problems</ul>
   <ul>And all of data science and programming community for being very open and desire to share your ideas!</ul>
-</li>  
+
