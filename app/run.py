@@ -1,12 +1,3 @@
-# QUICK NOTE!
-# This script was tested in Udacity workspace IDE, however,
-# udacity IDE doesn't seem to have xgboost library installed, so
-# I used scikit learn's Decision tree classifier instead (only in IDE)
-# if you run it udacity workspace IDE, uncomment lines reffering to Decision tree and comment 
-# lines reffering xgboost
-
-
-
 # imports for script to run
 import sys
 from sqlalchemy import create_engine
@@ -19,8 +10,6 @@ from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn.multioutput import MultiOutputClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.stop_words import ENGLISH_STOP_WORDS
-#from sklearn.tree import DecisionTreeClassifier
-from xgboost import XGBClassifier
 import nltk
 nltk.download(['punkt','stopwords','wordnet','averaged_perceptron_tagger'])
 from nltk.stem.wordnet import WordNetLemmatizer
@@ -362,10 +351,8 @@ def go():
     # save user input in query
     query = request.args.get('query', '') 
 
-    # use model to predict classification for query
-    #classification_labels = model.predict([query])[0]
-    #classification_results = dict(zip(df.columns[4:], classification_labels))
-    class_proba = [round(proba,2) for proba in np.array(model.predict_proba([query]))[:,0,1]]
+    # use model to predict classification probabilities for query
+    class_proba = [round(proba,4) for proba in np.array(model.predict_proba([query]))[:,0,1]]
     classification_results = dict(zip(df.columns[4:], class_proba))
 
     # This will render the go.html Please see that file. 
