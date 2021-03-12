@@ -54,13 +54,18 @@ def clean_data(df):
 # a function to save the data into database
 def save_data(df,database):
     """
-    Saves the data as disaster_messages table in SQLite database
+    Drops disaster_message table if it exists, saves the data as disaster_messages table in SQLite database
     df - dataframe to save
     database - string, database name
     """
     
     # creating a connection to database
     engine = create_engine(f'sqlite:///{database}')
+    
+    drop_command = 'DROP TABLE IF EXISTS disaster_messages'
+    
+    # drop table if exists
+    engine.execute(drop_command)
     
     # save the data
     df.to_sql(name='disaster_messages', con=engine, index=False)
