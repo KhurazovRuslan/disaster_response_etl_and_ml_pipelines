@@ -68,7 +68,7 @@ def save_data(df,database):
 
 
 # put everything together
-def main(m_file_path,c_file_path,database):
+def main():
     """
     Puts everything in one flow
     """
