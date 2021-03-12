@@ -27,8 +27,8 @@ from sklearn.feature_extraction.stop_words import ENGLISH_STOP_WORDS
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.pipeline import Pipeline
-from xgboost import XGBClassifier
-#from sklearn.tree import DecisionTreeClassifier
+#from xgboost import XGBClassifier
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.multioutput import MultiOutputClassifier
 from sklearn.metrics import recall_score, f1_score, brier_score_loss, roc_auc_score, classification_report
 
@@ -289,8 +289,8 @@ def build_model():
     # variable for a pipeline
     pipeline = Pipeline(steps=[
       ('features',TfidfVectorizer(tokenizer=process_text, ngram_range=(1,3), max_df=0.95, min_df=2)),
-      ('clf',MultiOutputClassifier(XGBClassifier(random_state=42, max_depth=6, n_estimators=1000, eta=0.1)))])
-      #('clf',MultiOutputClassifier(DecisionTreeClassifier(random_state=42)))])
+      #('clf',MultiOutputClassifier(XGBClassifier(random_state=42, max_depth=6, n_estimators=1000, eta=0.1)))])
+      ('clf',MultiOutputClassifier(DecisionTreeClassifier(random_state=42)))])
         
 
 
