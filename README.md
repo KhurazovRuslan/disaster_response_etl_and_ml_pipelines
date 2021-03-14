@@ -45,7 +45,7 @@ The goal of the project is to build ETL and ML pipelines using the data provided
   <h2>Instructions:</h2>
   <ul>
     Run the following commands in the project's root directory to set up your database and model.
-    <ul> -To run ETL pipeline that cleans data and stores in database: python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db</ul>
+    <ul> -To run ETL pipeline that cleans data and stores in database: python data/process_data.py data/messages.csv data/categories.csv data/DisasterResponse.db</ul>
     <ul>- To run ML pipeline that trains classifier and saves it: python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl</ul>
     <ul>- Run the following command in the app's directory to run your web app: python run.py</ul>
     <ul>- Go to http://0.0.0.0:3001/ (in my case it was https://view6914b2f4-3001.udacity-student-workspaces.com/)</ul>
