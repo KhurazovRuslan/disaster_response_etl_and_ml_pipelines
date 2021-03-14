@@ -47,8 +47,8 @@ The goal of the project is to build ETL and ML pipelines using the data provided
     Run the following commands in the project's root directory to set up your database and model.
     <ul> -To run ETL pipeline that cleans data and stores in database: python data/process_data.py data/messages.csv data/categories.csv data/DisasterResponse.db</ul>
     <ul>- To run ML pipeline that trains classifier and saves it: python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl</ul>
-    <ul>- Run the following command in the app's directory to run your web app: python run.py</ul>
-    <ul>- Go to http://0.0.0.0:3001/ (in my case it was https://view6914b2f4-3001.udacity-student-workspaces.com/)</ul>
+    <ul>- Type the following command to run your web app: python app/run.py</ul>
+    <ul>- Go to http://0.0.0.0:3001/ (in my case it was https://view6914b2f4-3001.udacity-student-workspaces.com/). In order to classify your message, type it in the box and press 'Classify Message', wait for the result. If there is a high possibily of the message belonging to one of the classes that category will be highlighted in red (at least 80% probability), if it is likely to belong to one of the classes that category will be highlighted in orange (between 50 and 80% probability), if it doesn't belong to a class that category will be highlighted in green (less than 50% probability)</ul>
 </ul>
 
   <h2>Thanks to:</h2>
