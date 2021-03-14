@@ -6,8 +6,6 @@ import numpy as np
 import re
 import pickle
 import json
-from sklearn.pipeline import Pipeline, FeatureUnion
-from sklearn.multioutput import MultiOutputClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.stop_words import ENGLISH_STOP_WORDS
 import nltk
@@ -255,7 +253,7 @@ df.drop('child_alone', axis=1, inplace=True)
 # load model
 model = pickle.load(open('models/classifier.pkl','rb'))
 
-bigrams = pd.read_csv('bigrams.csv')
+bigrams = pd.read_csv('app/bigrams.csv')
 
 # index webpage displays cool visuals and receives user input text for model
 @app.route('/')
