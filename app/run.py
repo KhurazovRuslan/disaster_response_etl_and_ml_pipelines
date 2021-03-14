@@ -253,7 +253,7 @@ df = pd.read_sql_table('disaster_messages', engine)
 df.drop('child_alone', axis=1, inplace=True)
 
 # load model
-model = pickle.load(open('models/trained_classifier.pkl','rb'))
+model = pickle.load(open('models/classifier.pkl','rb'))
 
 bigrams = pd.read_csv('bigrams.csv')
 
