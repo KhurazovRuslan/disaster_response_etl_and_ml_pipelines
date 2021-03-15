@@ -54,5 +54,5 @@ The goal of the project is to build ETL and ML pipelines using the data provided
   <h2>Thanks to:</h2>
   <ul>https://towardsdatascience.com/using-word2vec-to-analyze-news-headlines-and-predict-article-success-cdeda5f14751 and https://medium.com/@robert.salgado/multiclass-text-classification-from-start-to-finish-f616a8642538 for explaining basics of NLP for multiclass problems</ul>
   <ul>https://machinelearningmastery.com/tour-of-evaluation-metrics-for-imbalanced-classification/#:~:text=There%20are%20two%20groups%20of,%2Dspecificity%20and%20precision%2Drecall. for explaining different metrics for classification problems</ul>
-  <ul>And all of data science and programming community for being very open and desire to share your ideas!</ul>
+  <ul>And all of the data science and programming community for being very open and the desire to share your ideas!</ul>
 
